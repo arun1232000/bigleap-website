@@ -1,0 +1,166 @@
+.industries-section {
+  padding: 80px 0;
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-2);
+
+}
+
+.industries-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 50% 60% at 80% 50%, rgba(139,92,246,0.06), transparent),
+    radial-gradient(ellipse 40% 50% at 20% 50%, rgba(16,185,129,0.05), transparent);
+  pointer-events: none;
+}
+
+.industries-header {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 56px;
+}
+
+.industries-header .section-subtitle { margin: 0 auto; }
+
+.industries-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.industry-card {
+  position: relative;
+  border-radius: 18px;
+  padding: 36px 24px;
+  text-align: center;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--bg-3);
+  cursor: default;
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+}
+
+.industry-card:hover {
+  border-color: rgba(255,255,255,0.15);
+  box-shadow: 0 20px 48px rgba(0,0,0,0.4);
+}
+
+/* Background photo — subtly always visible */
+.industry-bg-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.28;
+  transition: opacity 0.4s ease, transform 0.5s ease;
+  transform: scale(1);
+}
+
+.industry-card:hover .industry-bg-img {
+  opacity: 0.55;
+  transform: scale(1.06);
+}
+
+/* Banner image behind header */
+.industries-banner-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 300px;
+  background: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=60') center 30%/cover no-repeat;
+  opacity: 0.09;
+  mask-image: linear-gradient(180deg, rgba(0,0,0,1) 0%, transparent 100%);
+  -webkit-mask-image: linear-gradient(180deg, rgba(0,0,0,1) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+/* Gradient overlay for text readability */
+.industry-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    160deg,
+    rgba(5,9,30,0.90) 0%,
+    rgba(5,9,30,0.72) 60%,
+    color-mix(in srgb, var(--ind-color) 28%, rgba(5,9,30,0.78)) 100%
+  );
+  opacity: 0.8;
+  transition: opacity 0.4s ease;
+}
+
+.industry-card:hover .industry-overlay { opacity: 1; }
+
+/* Content sits above the image */
+.industry-content {
+  position: relative;
+  z-index: 1;
+}
+
+.industry-icon {
+  width: 58px;
+  height: 58px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ind-color, var(--cyan));
+  margin: 0 auto 16px;
+  transition: background 0.3s, border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+
+.industry-card:hover .industry-icon {
+  background: color-mix(in srgb, var(--ind-color) 15%, transparent);
+  border-color: color-mix(in srgb, var(--ind-color) 40%, transparent);
+  transform: scale(1.1) translateY(-2px);
+  box-shadow: 0 8px 24px color-mix(in srgb, var(--ind-color) 30%, transparent);
+}
+
+.industry-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+  font-family: var(--font-display);
+  margin-bottom: 9px;
+  letter-spacing: -0.01em;
+  transition: color 0.2s;
+}
+
+.industry-card:hover .industry-name { color: #fff; }
+
+.industry-desc {
+  font-size: 13px;
+  color: var(--text-3);
+  line-height: 1.65;
+  font-family: var(--font-body);
+  transition: color 0.2s;
+}
+
+.industry-card:hover .industry-desc { color: rgba(255,255,255,0.65); }
+
+@media (max-width: 1024px) {
+  .industries-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 480px) {
+  .industries-grid { grid-template-columns: 1fr; }
+}
+
+/* Light theme */
+[data-theme="light"] .industry-card {
+  background: #fff;
+  border-color: rgba(0,0,0,0.07);
+}
+
+[data-theme="light"] .industry-icon {
+  background: rgba(0,0,0,0.04);
+  border-color: rgba(0,0,0,0.08);
+}

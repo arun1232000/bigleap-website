@@ -1,0 +1,136 @@
+.tech-section {
+  padding: 80px 0;
+  position: relative;
+  background: var(--bg-2);
+  overflow: hidden;
+}
+
+.tech-section-bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(139,92,246,0.05), transparent);
+  pointer-events: none;
+}
+
+.tech-header {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 56px;
+}
+
+.tech-header .section-subtitle { margin: 0 auto; }
+
+/* ── Marquee rows ── */
+.tech-marquee-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 56px;
+}
+
+.tech-marquee-track {
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);
+}
+
+.tech-marquee-track:hover .tech-marquee-inner {
+  animation-play-state: paused;
+}
+
+.tech-marquee-inner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: max-content;
+  animation: techScrollLeft 32s linear infinite;
+}
+
+.tech-marquee-reverse {
+  animation: techScrollRight 28s linear infinite !important;
+}
+
+@keyframes techScrollLeft {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes techScrollRight {
+  0%   { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+/* ── Logo pill ── */
+.tech-logo-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: var(--bg-3);
+  border: 1px solid var(--border);
+  border-radius: var(--r-pill);
+  white-space: nowrap;
+  flex-shrink: 0;
+  cursor: default;
+  transition: border-color 0.25s, background 0.25s, box-shadow 0.25s, transform 0.2s;
+}
+
+.tech-logo-item:hover {
+  border-color: var(--item-color, var(--cyan));
+  background: color-mix(in srgb, var(--item-color, var(--cyan)) 8%, var(--bg-3));
+  box-shadow: 0 0 16px color-mix(in srgb, var(--item-color, var(--cyan)) 25%, transparent);
+  transform: translateY(-2px);
+}
+
+.tech-logo-favicon {
+  object-fit: contain;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+.tech-logo-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-2);
+  font-family: var(--font-display);
+  transition: color 0.2s;
+}
+
+.tech-logo-item:hover .tech-logo-name {
+  color: var(--text);
+}
+
+/* ── Bottom banner ── */
+.tech-banner {
+  background: linear-gradient(135deg, rgba(0,200,255,0.06) 0%, rgba(139,92,246,0.06) 100%);
+  border: 1px solid var(--border-hi);
+  border-radius: 18px;
+  padding: 32px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.tech-banner-content h3 {
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 6px;
+  letter-spacing: -0.02em;
+}
+
+.tech-banner-content p {
+  color: var(--text-2);
+  font-size: 14px;
+}
+
+@media (max-width: 640px) {
+  .tech-banner { flex-direction: column; text-align: center; padding: 28px 24px; }
+}
+
+[data-theme="light"] .tech-section { background: #FFFFFF; }
+[data-theme="light"] .tech-logo-item { background: #F3F8FF; border-color: rgba(14,165,233,0.14); }
+[data-theme="light"] .tech-logo-name { color: #4A6480; }
+[data-theme="light"] .tech-logo-item:hover { background: rgba(14,165,233,0.08); }
