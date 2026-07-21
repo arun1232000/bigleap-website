@@ -1,0 +1,5 @@
+.split-word,
+.split-keep {
+  display: inline-block;
+  will-change: transform, opacity;
+}

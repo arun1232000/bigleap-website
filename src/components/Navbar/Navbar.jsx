@@ -1,6 +1,8 @@
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
 import { Menu, X, Zap, Sun, Moon } from 'lucide-react';
+import { useMagnetic } from '../../hooks/useMagnetic';
+import { useActiveSection } from '../../hooks/useActiveSection';
 import './Navbar.css';
 
 const navLinks = [
@@ -12,9 +14,16 @@ const navLinks = [
   { label: 'Contact', href: '#contact' },
 ];
 
+const sectionIds = navLinks.map(l => l.href.slice(1));
+
 export default function Navbar({ theme, toggleTheme }) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const lastY = useRef(0);
+  const { scrollY } = useScroll();
+  const cta = useMagnetic(0.3, 10);
+  const active = useActiveSection(sectionIds);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -22,12 +31,19 @@ export default function Navbar({ theme, toggleTheme }) {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  useMotionValueEvent(scrollY, 'change', (latest) => {
+    const diff = latest - lastY.current;
+    if (latest > 160 && diff > 4) setHidden(true);
+    else if (diff < -4 || latest < 160) setHidden(false);
+    lastY.current = latest;
+  });
+
   return (
     <motion.nav
       className={`navbar ${scrolled ? 'scrolled' : ''}`}
       initial={{ y: -80, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6 }}
+      animate={{ y: hidden ? -110 : 0, opacity: 1 }}
+      transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
     >
       <div className="navbar-inner container">
         <a href="#hero" className="logo">
@@ -36,14 +52,34 @@ export default function Navbar({ theme, toggleTheme }) {
         </a>
 
         <ul className="nav-links">
-          {navLinks.map(link => (
-            <li key={link.label}>
-              <a href={link.href} className="nav-link">{link.label}</a>
-            </li>
-          ))}
+          {navLinks.map(link => {
+            const isActive = active === link.href.slice(1);
+            return (
+              <li key={link.label}>
+                <a href={link.href} className={`nav-link ${isActive ? 'nav-link--active' : ''}`}>
+                  {link.label}
+                  {isActive && (
+                    <motion.span
+                      layoutId="navActiveDot"
+                      className="nav-link-active-dot"
+                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                </a>
+              </li>
+            );
+          })}
         </ul>
 
-        <a href="#contact" className="btn-primary nav-cta">Get Started</a>
+        <motion.a
+          href="#contact"
+          className="btn-primary nav-cta"
+          ref={cta.ref}
+          style={cta.style}
+          {...cta.handlers}
+        >
+          Get Started
+        </motion.a>
 
         <motion.button
           className="theme-toggle"
@@ -83,7 +119,7 @@ export default function Navbar({ theme, toggleTheme }) {
               <a
                 key={link.label}
                 href={link.href}
-                className="mobile-link"
+                className={`mobile-link ${active === link.href.slice(1) ? 'mobile-link--active' : ''}`}
                 onClick={() => setOpen(false)}
               >
                 {link.label}

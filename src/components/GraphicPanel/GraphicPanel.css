@@ -1,0 +1,110 @@
+.graphic-panel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: linear-gradient(160deg, var(--bg-4) 0%, var(--bg-3) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gp-mesh {
+  position: absolute;
+  inset: -20%;
+  background:
+    radial-gradient(circle at 22% 24%, color-mix(in srgb, var(--gp-color) 38%, transparent) 0%, transparent 46%),
+    radial-gradient(circle at 78% 76%, color-mix(in srgb, var(--gp-color) 22%, transparent) 0%, transparent 50%);
+  filter: blur(6px);
+  animation: gpMeshDrift 16s ease-in-out infinite;
+}
+
+@keyframes gpMeshDrift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(3%, -3%) scale(1.06); }
+}
+
+.gp-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+  background-size: 34px 34px;
+  mask-image: radial-gradient(circle at 50% 50%, rgba(0,0,0,0.9) 0%, transparent 78%);
+  animation: gpGridPan 22s linear infinite;
+}
+
+@keyframes gpGridPan {
+  from { background-position: 0 0, 0 0; }
+  to   { background-position: 34px 34px, 34px 34px; }
+}
+
+.gp-ghost-icon {
+  position: relative;
+  color: var(--gp-color);
+  opacity: 0.34;
+  filter: drop-shadow(0 0 24px color-mix(in srgb, var(--gp-color) 45%, transparent));
+}
+
+.gp-nodes { position: absolute; inset: 0; pointer-events: none; }
+
+.gp-node {
+  position: absolute;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--gp-color);
+  box-shadow: 0 0 10px var(--gp-color);
+  animation: gpNodePulse 3s ease-in-out infinite;
+}
+.gp-node-1 { top: 22%; left: 18%; animation-delay: 0s; }
+.gp-node-2 { top: 68%; left: 74%; animation-delay: 1s; }
+.gp-node-3 { top: 40%; left: 82%; animation-delay: 2s; }
+
+@keyframes gpNodePulse {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.6); }
+}
+
+.gp-scan {
+  position: absolute;
+  top: 0; left: -60%;
+  width: 40%; height: 100%;
+  background: linear-gradient(100deg, transparent, color-mix(in srgb, var(--gp-color) 14%, transparent), transparent);
+  animation: gpScanSweep 6s ease-in-out infinite;
+}
+
+@keyframes gpScanSweep {
+  0% { left: -60%; }
+  50% { left: 120%; }
+  100% { left: 120%; }
+}
+
+.gp-label {
+  position: absolute;
+  left: 14px; bottom: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(10,10,13,0.5);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 5px 10px;
+  border-radius: var(--r-pill);
+  letter-spacing: 0.02em;
+}
+.gp-label svg { color: var(--gp-color); flex-shrink: 0; }
+
+.gp-dense .gp-ghost-icon { opacity: 0.4; }
+
+[data-theme="light"] .graphic-panel {
+  background: linear-gradient(160deg, var(--bg-4) 0%, var(--bg-2) 100%);
+}
+[data-theme="light"] .gp-grid { background-image:
+    linear-gradient(rgba(10,10,13,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(10,10,13,0.05) 1px, transparent 1px); }
+[data-theme="light"] .gp-label { background: rgba(255,255,255,0.6); color: var(--text); }

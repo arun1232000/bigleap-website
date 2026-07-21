@@ -9,9 +9,9 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 55% 55% at 95% 90%, rgba(139,92,246,0.08), transparent),
-    radial-gradient(ellipse 45% 45% at 5% 10%, rgba(0,200,255,0.06), transparent),
-    radial-gradient(ellipse 30% 40% at 50% 50%, rgba(16,185,129,0.03), transparent);
+    radial-gradient(ellipse 55% 55% at 95% 90%, rgba(139,124,255,0.09), transparent),
+    radial-gradient(ellipse 45% 45% at 5% 10%, rgba(214,255,63,0.05), transparent),
+    radial-gradient(ellipse 30% 40% at 50% 50%, rgba(255,176,32,0.04), transparent);
   pointer-events: none;
 }
 
@@ -42,16 +42,13 @@
   display: flex;
   align-items: center;
   gap: 14px;
-  background: var(--bg-2);
-  border: 1px solid var(--border);
-  border-radius: var(--r);
   padding: 16px 18px;
   transition: border-color 0.2s, background 0.2s, transform 0.2s;
 }
 
 .contact-info-card:hover {
   border-color: var(--border-glow);
-  background: rgba(0,200,255,0.03);
+  background: var(--cyan-dim);
   transform: translateX(4px);
 }
 
@@ -85,9 +82,6 @@
 }
 
 .contact-promise {
-  background: var(--bg-2);
-  border: 1px solid var(--border);
-  border-radius: 18px;
   padding: 22px;
 }
 
@@ -128,21 +122,17 @@
 
 /* Form side */
 .contact-form-wrap {
-  background: var(--bg-2);
-  border: 1px solid var(--border);
-  border-radius: 22px;
   padding: 36px;
   box-shadow: var(--shadow-md);
-  position: relative;
   overflow: hidden;
 }
 
-.contact-form-wrap::before {
+.contact-form-wrap::after {
   content: '';
   position: absolute;
   top: -80px; right: -80px;
   width: 200px; height: 200px;
-  background: radial-gradient(circle, rgba(0,200,255,0.06), transparent 70%);
+  background: radial-gradient(circle, rgba(214,255,63,0.1), transparent 70%);
   pointer-events: none;
 }
 
@@ -196,9 +186,9 @@
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
-  border-color: rgba(0,200,255,0.40);
+  border-color: var(--border-glow);
   background: var(--bg-4);
-  box-shadow: 0 0 0 3px rgba(0,200,255,0.08);
+  box-shadow: 0 0 0 3px rgba(214,255,63,0.1);
 }
 
 .form-group select {
@@ -266,12 +256,15 @@
 /* Banner image */
 .contact-banner-img {
   position: absolute;
-  bottom: 0;
+  bottom: -40px;
   left: 0;
   right: 0;
-  height: 320px;
-  background: url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1600&q=60') center 40%/cover no-repeat;
-  opacity: 0.06;
+  height: 360px;
+  background-image:
+    linear-gradient(rgba(214,255,63,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(214,255,63,0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity: 0.5;
   mask-image: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, transparent 100%);
   -webkit-mask-image: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, transparent 100%);
   pointer-events: none;
@@ -294,14 +287,16 @@
   gap: 8px;
 }
 
-.contact-gif-item img {
+.contact-gif-visual {
   width: 130px;
   height: 98px;
-  object-fit: cover;
-  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--r-card);
   border: 1px solid var(--border-hi);
-  box-shadow: 0 4px 24px rgba(0,0,0,0.35);
-  display: block;
+  background: radial-gradient(circle, var(--cyan-dim) 0%, var(--bg-3) 75%);
+  box-shadow: var(--shadow-sm);
 }
 
 .contact-gif-item span {
@@ -316,7 +311,7 @@
 .contact-gif-sep {
   font-size: 14px;
   font-weight: 600;
-  color: var(--cyan);
+  color: var(--cyan-dark);
   font-family: var(--font-display);
   letter-spacing: 0.04em;
   padding: 0 8px;
@@ -325,16 +320,16 @@
 @media (max-width: 640px) {
   .contact-gif-strip { gap: 20px; }
   .contact-gif-sep { display: none; }
-  .contact-gif-item img { width: 110px; height: 82px; }
+  .contact-gif-visual { width: 110px; height: 82px; }
 }
 
 /* ── Glowing submit button ── */
 .contact-submit,
 button[type="submit"],
 .submit-btn {
-  background: linear-gradient(135deg, #00C8FF 0%, #0090cc 100%) !important;
-  box-shadow: 0 4px 24px rgba(0,200,255,0.35) !important;
-  color: #000 !important;
+  background: var(--grad) !important;
+  box-shadow: var(--shadow-md) !important;
+  color: #0A0A0D !important;
   position: relative !important;
   overflow: hidden !important;
   transition: box-shadow 0.3s, transform 0.2s !important;
@@ -342,7 +337,7 @@ button[type="submit"],
 .contact-submit:hover,
 button[type="submit"]:hover,
 .submit-btn:hover {
-  box-shadow: 0 8px 40px rgba(0,200,255,0.5) !important;
+  box-shadow: var(--shadow-lg), var(--glow-cyan) !important;
   transform: translateY(-2px) !important;
 }
 /* Form inputs glow on focus */
@@ -352,8 +347,8 @@ button[type="submit"]:hover,
 input:focus,
 textarea:focus,
 select:focus {
-  border-color: rgba(0,200,255,0.4) !important;
-  box-shadow: 0 0 0 3px rgba(0,200,255,0.08), 0 0 20px rgba(0,200,255,0.06) !important;
+  border-color: var(--border-glow) !important;
+  box-shadow: 0 0 0 3px rgba(214,255,63,0.1), 0 0 20px rgba(214,255,63,0.08) !important;
   outline: none;
 }
 

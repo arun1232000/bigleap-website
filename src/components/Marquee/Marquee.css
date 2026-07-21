@@ -54,10 +54,10 @@
 }
 
 .marquee-pill:hover {
-  color: var(--sky);
-  border-color: var(--sky);
-  background: rgba(0,200,255,0.06);
-  box-shadow: 0 0 14px rgba(0,200,255,0.18);
+  color: var(--cyan-dark);
+  border-color: var(--border-glow);
+  background: var(--cyan-dim);
+  box-shadow: var(--shadow-sm);
 }
 
 .marquee-dot {

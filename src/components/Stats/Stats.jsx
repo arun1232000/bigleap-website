@@ -31,7 +31,7 @@ function StatCard({ s, i }) {
   return (
     <motion.div
       ref={cardRef}
-      className="stat-item"
+      className={`stat-item glass${i === 0 ? ' stat-item-featured' : ''}`}
       initial={{ opacity: 0, y: 20 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ type: 'spring', stiffness: 100, damping: 15, delay: i * 0.1 }}
@@ -57,7 +57,7 @@ export default function Stats() {
   return (
     <section className="stats-section">
       <div className="container">
-        <div className="stats-grid">
+        <div className="stats-grid stats-bento">
           {stats.map((s, i) => <StatCard key={s.label} s={s} i={i} />)}
         </div>
       </div>

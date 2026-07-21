@@ -13,8 +13,8 @@
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    linear-gradient(rgba(245,245,242,0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245,245,242,0.045) 1px, transparent 1px);
   background-size: 60px 60px;
   pointer-events: none;
   mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 40%, transparent 100%);
@@ -38,11 +38,11 @@
   filter: blur(80px);
   animation: orbFloat 14s ease-in-out infinite;
 }
-.hero-orb-1 { width: 500px; height: 500px; top: -160px; right: -120px; background: rgba(0,200,255,0.07); }
-.hero-orb-2 { width: 400px; height: 400px; bottom: -100px; left: -80px; background: rgba(139,92,246,0.07); animation-delay: 5s; }
-.hero-orb-3 { width: 300px; height: 300px; top: 40%; left: 30%; background: rgba(16,185,129,0.05); animation-delay: 9s; }
-.hero-orb-4 { width: 600px; height: 600px; top: 10%; left: 5%; background: radial-gradient(circle, rgba(139,92,246,0.08) 0%, transparent 70%); animation-delay: 3s; }
-.hero-orb-5 { width: 350px; height: 350px; bottom: 5%; right: 5%; background: radial-gradient(circle, rgba(236,72,153,0.06) 0%, transparent 70%); animation-delay: 7s; }
+.hero-orb-1 { width: 500px; height: 500px; top: -160px; right: -120px; background: rgba(214,255,63,0.07); }
+.hero-orb-2 { width: 400px; height: 400px; bottom: -100px; left: -80px; background: rgba(139,124,255,0.08); animation-delay: 5s; }
+.hero-orb-3 { width: 300px; height: 300px; top: 40%; left: 30%; background: rgba(255,176,32,0.05); animation-delay: 9s; }
+.hero-orb-4 { width: 600px; height: 600px; top: 10%; left: 5%; background: radial-gradient(circle, rgba(139,124,255,0.09) 0%, transparent 70%); animation-delay: 3s; }
+.hero-orb-5 { width: 350px; height: 350px; bottom: 5%; right: 5%; background: radial-gradient(circle, rgba(255,107,94,0.06) 0%, transparent 70%); animation-delay: 7s; }
 
 @keyframes orbFloat {
   0%, 100% { transform: translate(0,0) scale(1); }
@@ -67,23 +67,19 @@
 .hero-eyebrow {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  font-size: 13px;
+  gap: 9px;
+  font-size: 14px;
   font-weight: 600;
-  color: var(--text-2);
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  font-family: var(--font-display);
+  color: var(--cyan);
+  letter-spacing: 0;
+  font-family: var(--font-body);
+  background: var(--cyan-dim);
+  border: 1px solid var(--border-glow);
+  border-radius: var(--r-pill);
+  padding: 8px 20px;
 }
 
-.eyebrow-dot {
-  width: 7px; height: 7px;
-  border-radius: 50%;
-  background: var(--cyan);
-  flex-shrink: 0;
-  box-shadow: 0 0 10px var(--cyan);
-  animation: dotPulse 2.5s ease-in-out infinite;
-}
+.hero-eyebrow svg { color: var(--cyan); flex-shrink: 0; }
 
 @keyframes dotPulse {
   0%, 100% { box-shadow: 0 0 6px var(--cyan); transform: scale(1); }
@@ -93,7 +89,7 @@
 .hero-headline {
   font-family: var(--font-display);
   font-size: clamp(2.8rem, 5vw, 4.5rem);
-  font-weight: 800;
+  font-weight: 700;
   line-height: 1.1;
   letter-spacing: -0.02em;
   color: var(--text);
@@ -101,16 +97,21 @@
   flex-direction: column;
 }
 
+.headline-line-mask { display: block; overflow: hidden; }
 .headline-line { display: block; }
 
 .headline-accent {
+  font-family: var(--font-display);
+  font-style: normal;
+  font-weight: 700;
   color: var(--cyan);
+  text-shadow: 0 0 30px rgba(214,255,63,0.3);
 }
 
 .hero-tw {
   font-family: var(--font-display);
   font-size: inherit;
-  font-weight: inherit;
+  font-weight: 700;
 }
 
 .hero-tw-text {
@@ -141,16 +142,16 @@
   align-items: center;
   gap: 8px;
   padding: 14px 32px;
-  background: linear-gradient(135deg, #00C8FF 0%, #0099cc 100%);
-  color: #000;
-  border-radius: var(--r-pill);
+  background: var(--grad);
+  color: #0A0A0D;
+  border-radius: var(--r-btn);
   font-weight: 700;
   font-size: 15px;
   text-decoration: none;
   font-family: var(--font-display);
   position: relative;
   overflow: hidden;
-  box-shadow: 0 4px 24px rgba(0,200,255,0.3);
+  box-shadow: var(--shadow-md);
   transition: box-shadow 0.3s, transform 0.2s;
 }
 
@@ -159,14 +160,14 @@
   position: absolute;
   top: -50%; left: -75%;
   width: 50%; height: 200%;
-  background: linear-gradient(to right, transparent, rgba(255,255,255,0.25), transparent);
+  background: linear-gradient(to right, transparent, rgba(0,0,0,0.12), transparent);
   transform: skewX(-20deg);
   transition: left 0.5s ease;
   pointer-events: none;
 }
 
 .hero-btn-primary:hover {
-  box-shadow: 0 8px 40px rgba(0,200,255,0.5);
+  box-shadow: var(--shadow-lg), var(--glow-cyan);
   transform: translateY(-2px);
 }
 
@@ -180,7 +181,7 @@
   background: transparent;
   color: var(--text);
   border: 1px solid var(--border-hi);
-  border-radius: var(--r-pill);
+  border-radius: var(--r-btn);
   font-weight: 600;
   font-size: 15px;
   font-family: var(--font-display);
@@ -202,10 +203,10 @@
 }
 
 .hero-btn-ghost:hover {
-  border-color: rgba(0,200,255,0.5);
-  background: rgba(0,200,255,0.06);
+  border-color: var(--border-glow);
+  background: var(--cyan-dim);
   transform: translateY(-2px);
-  box-shadow: 0 4px 20px rgba(0,200,255,0.1);
+  box-shadow: var(--shadow-sm);
 }
 
 .hero-btn-ghost:hover::after { left: 125%; }
@@ -254,16 +255,16 @@
   justify-content: center;
 }
 
-/* Dashboard card */
+/* Dashboard glass card */
 .hero-dash {
-  background: rgba(255,255,255,0.03);
+  background: var(--bg-card-hi);
   border: 1px solid var(--border-hi);
-  border-radius: 20px;
-  backdrop-filter: blur(24px);
+  border-radius: var(--r-card);
+  backdrop-filter: blur(24px) saturate(140%);
   overflow: hidden;
   width: 380px;
   max-width: 100%;
-  box-shadow: 0 32px 80px rgba(0,0,0,0.6);
+  box-shadow: var(--shadow-lg);
 }
 
 .hero-dash-header {
@@ -300,7 +301,7 @@
 
 .hero-bar-track {
   height: 6px;
-  background: rgba(255,255,255,0.06);
+  background: rgba(255,255,255,0.08);
   border-radius: 3px;
   overflow: hidden;
 }
@@ -324,53 +325,87 @@
 .dash-dot-live {
   width: 7px; height: 7px;
   border-radius: 50%;
-  background: #10B981;
+  background: var(--cyan);
   flex-shrink: 0;
-  box-shadow: 0 0 8px #10B981;
+  box-shadow: 0 0 8px var(--cyan);
   animation: dotPulse 2s ease-in-out infinite;
 }
 
-/* Spinning badge */
+/* Orbit ring — icons circling the dashboard on an elliptical path */
+.hero-orbit-ring {
+  position: absolute;
+  inset: -60px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-orbit-item {
+  position: absolute;
+  inset: 0;
+  animation: orbitSpin 20s linear infinite;
+  animation-delay: var(--orbit-delay, 0s);
+}
+
+.hero-orbit-icon {
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  transform: translate(-50%, -50%);
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: color-mix(in srgb, var(--orbit-color) 16%, var(--bg-card));
+  border: 1px solid color-mix(in srgb, var(--orbit-color) 45%, transparent);
+  color: var(--orbit-color);
+  box-shadow: 0 0 16px color-mix(in srgb, var(--orbit-color) 35%, transparent);
+  animation: orbitCounterSpin 20s linear infinite;
+  animation-delay: var(--orbit-delay, 0s);
+}
+
+@keyframes orbitSpin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes orbitCounterSpin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to   { transform: translate(-50%, -50%) rotate(-360deg); }
+}
+
+@media (max-width: 960px) {
+  .hero-orbit-ring { display: none; }
+}
+
+/* Metric orb (replaces the old spinning text-ring badge) */
 .hero-spin-wrap {
   position: absolute;
   top: -30px;
   right: -30px;
 }
 
-.spinning-badge {
-  position: relative;
-  width: 140px;
-  height: 140px;
-  cursor: default;
-}
-
-.spin-svg {
-  animation: spinBadge 12s linear infinite;
-  display: block;
-}
-
-@keyframes spinBadge {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-.spin-center {
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  width: 44px; height: 44px;
+.metric-orb {
+  width: 64px;
+  height: 64px;
   border-radius: 50%;
   background: var(--cyan);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #000;
-  box-shadow: 0 0 24px rgba(0,200,255,0.4);
+  color: #0A0A0D;
+  box-shadow: var(--glow-cyan), var(--shadow-md);
+  animation: orbPulse 3s ease-in-out infinite;
   transition: transform 0.2s;
+  cursor: default;
 }
 
-.spinning-badge:hover .spin-center {
-  transform: translate(-50%, -50%) scale(1.1) rotate(45deg);
+.metric-orb:hover { transform: scale(1.08) rotate(20deg); }
+
+@keyframes orbPulse {
+  0%, 100% { box-shadow: var(--glow-cyan), var(--shadow-md); }
+  50% { box-shadow: 0 0 56px rgba(214,255,63,0.4), var(--shadow-md); }
 }
 
 /* Scroll hint */
@@ -416,18 +451,15 @@
   .hero-stat-item { padding: 12px 14px; }
 }
 
-/* Background banner + floating GIF */
+/* Background banner + floating visuals */
 .hero-bg-image {
   position: absolute;
   inset: 0;
-  background: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1600&q=60') center/cover no-repeat;
-  opacity: 0.07;
+  background-image:
+    radial-gradient(circle at 25% 30%, rgba(214,255,63,0.10) 0%, transparent 45%),
+    radial-gradient(circle at 75% 70%, rgba(139,124,255,0.08) 0%, transparent 50%);
+  opacity: 0.4;
   pointer-events: none;
-}
-
-@keyframes gifFloat {
-  0%, 100% { transform: translateY(0); }
-  50%       { transform: translateY(-10px); }
 }
 
 /* ── Floating stat badges ── */
@@ -436,12 +468,12 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  background: rgba(10,10,14,0.85);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 14px;
+  background: var(--bg-card-hi);
+  border: 1px solid var(--border-hi);
+  border-radius: var(--r-card);
   padding: 11px 16px;
   backdrop-filter: blur(20px);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+  box-shadow: var(--shadow-lg);
   z-index: 3;
   white-space: nowrap;
 }
@@ -466,16 +498,16 @@
 
 .hfb-icon {
   width: 32px; height: 32px;
-  border-radius: 9px;
-  background: rgba(0,200,255,0.12);
+  border-radius: var(--r-sm);
+  background: var(--cyan-dim);
   display: flex; align-items: center; justify-content: center;
   color: var(--cyan);
   flex-shrink: 0;
 }
 
 .hfb-icon-green {
-  background: rgba(16,185,129,0.12);
-  color: #10B981;
+  background: var(--purple-dim);
+  color: var(--purple);
 }
 
 .hfb-text { display: flex; flex-direction: column; gap: 1px; }
@@ -483,7 +515,7 @@
 .hfb-val {
   font-family: var(--font-display);
   font-size: 16px;
-  font-weight: 800;
+  font-weight: 700;
   color: var(--text);
   letter-spacing: -0.02em;
   line-height: 1;
@@ -496,27 +528,30 @@
   font-weight: 500;
 }
 
-/* ── Floating GIF card ── */
+/* ── Floating animated-visual card ── */
 .hero-gif-card {
   position: absolute;
   bottom: -20px;
   right: -20px;
   width: 170px;
-  border-radius: 16px;
+  border-radius: var(--r-card);
   overflow: hidden;
-  border: 1px solid rgba(0,200,255,0.2);
-  box-shadow: 0 12px 40px rgba(0,0,0,0.6), 0 0 20px rgba(0,200,255,0.08);
+  border: 1px solid var(--border-hi);
+  box-shadow: var(--shadow-lg);
   animation: badgeFloat 8s ease-in-out infinite;
   animation-delay: 1.5s;
   z-index: 3;
+  background: var(--bg-card-hi);
+  backdrop-filter: blur(20px);
 }
 
-.hero-gif-img {
+.hero-gif-visual {
   width: 100%;
   height: 100px;
-  object-fit: cover;
-  display: block;
-  opacity: 0.9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle, var(--cyan-dim) 0%, transparent 75%);
 }
 
 .hero-gif-footer {
@@ -524,8 +559,8 @@
   align-items: center;
   gap: 7px;
   padding: 8px 12px;
-  background: rgba(10,10,14,0.92);
-  border-top: 1px solid rgba(255,255,255,0.06);
+  background: var(--bg-card);
+  border-top: 1px solid var(--border);
   font-size: 11px;
   font-weight: 600;
   color: var(--text-2);
@@ -536,8 +571,8 @@
 .hero-gif-dot {
   width: 6px; height: 6px;
   border-radius: 50%;
-  background: #10B981;
-  box-shadow: 0 0 8px #10B981;
+  background: var(--cyan);
+  box-shadow: 0 0 8px var(--cyan);
   animation: dotPulse 2s infinite;
   flex-shrink: 0;
 }
@@ -553,12 +588,7 @@
   position: absolute;
   top: 0; left: 0; right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(0,200,255,0.4) 30%, rgba(139,92,246,0.4) 70%, transparent);
+  background: linear-gradient(90deg, transparent, rgba(214,255,63,0.4) 30%, rgba(139,124,255,0.4) 70%, transparent);
   z-index: 2;
   pointer-events: none;
-}
-
-/* ── Enhanced dash card glow ── */
-.hero-dash {
-  box-shadow: 0 32px 80px rgba(0,0,0,0.6), 0 0 60px rgba(0,200,255,0.08), inset 0 1px 0 rgba(255,255,255,0.08) !important;
 }

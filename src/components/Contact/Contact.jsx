@@ -1,6 +1,10 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Send, CheckCircle2, Loader2 } from 'lucide-react';
+import IsometricIcon from '../About/IsometricIcon';
+import SplitText from '../SplitText/SplitText';
+import { useMagnetic } from '../../hooks/useMagnetic';
+import { useParallax } from '../../hooks/useParallax';
 import './Contact.css';
 
 const ACCESS_KEY = import.meta.env.VITE_WEB3FORMS_KEY;
@@ -27,6 +31,8 @@ export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState('');
+  const bgParallax = useParallax(35);
+  const submitCta = useMagnetic(0.25, 10);
 
   const handleChange = e => setForm({ ...form, [e.target.name]: e.target.value });
 
@@ -65,7 +71,7 @@ export default function Contact() {
   return (
     <section id="contact" className="contact-section">
       <div className="contact-bg" />
-      <div className="contact-banner-img" />
+      <motion.div className="contact-banner-img" ref={bgParallax.ref} style={{ y: bgParallax.y }} />
       <div className="container">
         <motion.div
           className="contact-header"
@@ -74,9 +80,9 @@ export default function Contact() {
           viewport={{ once: true }}
         >
           <div className="section-badge">Get In Touch</div>
-          <h2 className="section-title">
-            Ready to Make the<br /><span>Leap Forward?</span>
-          </h2>
+          <SplitText as="h2" className="section-title">
+            Ready to Make the<br /><span className="accent-italic">Leap Forward?</span>
+          </SplitText>
           <p className="section-subtitle">
             Tell us about your business and we'll put together a tailored IT solution. Free consultation, no commitment.
           </p>
@@ -84,12 +90,12 @@ export default function Contact() {
 
         <div className="contact-gif-strip">
           <div className="contact-gif-item">
-            <img src="https://media.giphy.com/media/077i6AULCXc0FKTj9s/giphy.gif" alt="" aria-hidden="true" />
+            <div className="contact-gif-visual"><IsometricIcon size={58} variant="cube" /></div>
             <span>Fast Support</span>
           </div>
           <div className="contact-gif-sep">Get in Touch →</div>
           <div className="contact-gif-item">
-            <img src="https://media.giphy.com/media/xT9IgzoKnwFNmISR8I/giphy.gif" alt="" aria-hidden="true" />
+            <div className="contact-gif-visual"><IsometricIcon size={58} variant="diamond" /></div>
             <span>Expert Solutions</span>
           </div>
         </div>
@@ -103,7 +109,7 @@ export default function Contact() {
           >
             <div className="contact-info-cards">
               {contactInfo.map((item) => (
-                <a key={item.label} href={item.href} className="contact-info-card">
+                <a key={item.label} href={item.href} className="contact-info-card glass">
                   <div className="contact-info-icon">{item.icon}</div>
                   <div>
                     <div className="contact-info-label">{item.label}</div>
@@ -113,7 +119,7 @@ export default function Contact() {
               ))}
             </div>
 
-            <div className="contact-promise">
+            <div className="contact-promise glass">
               <h3>What Happens Next?</h3>
               {[
                 'We review your enquiry within 2 business hours',
@@ -130,7 +136,7 @@ export default function Contact() {
           </motion.div>
 
           <motion.div
-            className="contact-form-wrap"
+            className="contact-form-wrap glass"
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -204,12 +210,19 @@ export default function Contact() {
                     required
                   />
                 </div>
-                <button type="submit" className="btn-primary form-submit contact-submit" disabled={sending}>
+                <motion.button
+                  type="submit"
+                  className="btn-primary form-submit contact-submit"
+                  disabled={sending}
+                  ref={submitCta.ref}
+                  style={submitCta.style}
+                  {...submitCta.handlers}
+                >
                   {sending
                     ? <><Loader2 size={16} className="spin-icon" /> Sending…</>
                     : <><Send size={16} /> Send Message</>
                   }
-                </button>
+                </motion.button>
                 {error && <p className="form-error">{error}</p>}
                 <p className="form-privacy">
                   We respect your privacy. Your information is never shared with third parties.

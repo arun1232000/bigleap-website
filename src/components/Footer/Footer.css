@@ -14,10 +14,11 @@
 .footer-big-text {
   font-family: var(--font-display);
   font-size: clamp(5rem, 14vw, 13rem);
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: -0.05em;
   line-height: 0.9;
-  color: #ffffff;
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(245,245,242,0.14);
   user-select: none;
   white-space: nowrap;
   overflow: hidden;
@@ -26,15 +27,16 @@
 }
 
 .footer-big-text span {
-  color: var(--cyan);
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(214,255,63,0.4);
 }
 
 [data-theme="light"] .footer-big-text {
-  color: #000000;
+  -webkit-text-stroke-color: rgba(10,10,13,0.12);
 }
 
 [data-theme="light"] .footer-big-text span {
-  color: var(--cyan);
+  -webkit-text-stroke-color: rgba(107,142,0,0.4);
 }
 
 .footer-top {
@@ -64,9 +66,9 @@
 .footer-logo-icon {
   width: 34px; height: 34px;
   background: var(--cyan);
-  border-radius: 9px;
+  border-radius: var(--r-sm);
   display: flex; align-items: center; justify-content: center;
-  color: #000;
+  color: #0A0A0D;
   flex-shrink: 0;
 }
 
@@ -186,15 +188,15 @@
   bottom: 0; left: 50%;
   transform: translateX(-50%);
   width: 70%; height: 200px;
-  background: radial-gradient(ellipse at center bottom, rgba(0,200,255,0.07) 0%, transparent 70%);
+  background: radial-gradient(ellipse at center bottom, rgba(214,255,63,0.12) 0%, transparent 70%);
   pointer-events: none;
 }
 
 /* Social button hover glow */
 .social-btn:hover {
-  border-color: rgba(0,200,255,0.4) !important;
+  border-color: var(--border-glow) !important;
   color: var(--cyan) !important;
-  box-shadow: 0 0 20px rgba(0,200,255,0.15) !important;
+  box-shadow: 0 0 20px rgba(214,255,63,0.18) !important;
 }
 
 .footer-link:hover {
@@ -205,10 +207,13 @@
   content: '';
   position: absolute;
   inset: 0;
-  background-image: url('https://images.unsplash.com/photo-1510915361894-db8b60106cb1?auto=format&fit=crop&w=1920&q=50');
-  background-size: cover;
-  background-position: center;
-  opacity: 0.05;
+  background-image:
+    linear-gradient(rgba(214,255,63,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(214,255,63,0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity: 0.5;
+  mask-image: radial-gradient(ellipse 70% 100% at 50% 100%, rgba(0,0,0,0.9) 0%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 100% at 50% 100%, rgba(0,0,0,0.9) 0%, transparent 100%);
   pointer-events: none;
   z-index: 0;
 }

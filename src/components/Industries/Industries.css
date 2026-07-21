@@ -10,8 +10,8 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 50% 60% at 80% 50%, rgba(139,92,246,0.06), transparent),
-    radial-gradient(ellipse 40% 50% at 20% 50%, rgba(16,185,129,0.05), transparent);
+    radial-gradient(ellipse 50% 60% at 80% 50%, rgba(139,124,255,0.08), transparent),
+    radial-gradient(ellipse 40% 50% at 20% 50%, rgba(214,255,63,0.05), transparent);
   pointer-events: none;
 }
 
@@ -46,36 +46,36 @@
 }
 
 .industry-card:hover {
-  border-color: rgba(255,255,255,0.15);
-  box-shadow: 0 20px 48px rgba(0,0,0,0.4);
+  border-color: rgba(251,243,221,0.15);
+  box-shadow: var(--shadow-lg);
 }
 
-/* Background photo — subtly always visible */
-.industry-bg-img {
+/* Background graphic — subtly always visible */
+.industry-bg-graphic {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.28;
+  opacity: 0.4;
   transition: opacity 0.4s ease, transform 0.5s ease;
   transform: scale(1);
 }
 
-.industry-card:hover .industry-bg-img {
-  opacity: 0.55;
+.industry-card:hover .industry-bg-graphic {
+  opacity: 0.7;
   transform: scale(1.06);
 }
 
-/* Banner image behind header */
-.industries-banner-img {
+/* Animated grid behind header */
+.industries-banner-grid {
   position: absolute;
-  top: 0;
+  top: -40px;
   left: 0;
   right: 0;
-  height: 300px;
-  background: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=60') center 30%/cover no-repeat;
-  opacity: 0.09;
+  height: 340px;
+  background-image:
+    linear-gradient(rgba(214,255,63,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(214,255,63,0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity: 0.5;
   mask-image: linear-gradient(180deg, rgba(0,0,0,1) 0%, transparent 100%);
   -webkit-mask-image: linear-gradient(180deg, rgba(0,0,0,1) 0%, transparent 100%);
   pointer-events: none;
@@ -87,9 +87,9 @@
   inset: 0;
   background: linear-gradient(
     160deg,
-    rgba(5,9,30,0.90) 0%,
-    rgba(5,9,30,0.72) 60%,
-    color-mix(in srgb, var(--ind-color) 28%, rgba(5,9,30,0.78)) 100%
+    rgba(10,10,13,0.90) 0%,
+    rgba(10,10,13,0.72) 60%,
+    color-mix(in srgb, var(--ind-color) 28%, rgba(10,10,13,0.78)) 100%
   );
   opacity: 0.8;
   transition: opacity 0.4s ease;
@@ -154,13 +154,3 @@
   .industries-grid { grid-template-columns: 1fr; }
 }
 
-/* Light theme */
-[data-theme="light"] .industry-card {
-  background: #fff;
-  border-color: rgba(0,0,0,0.07);
-}
-
-[data-theme="light"] .industry-icon {
-  background: rgba(0,0,0,0.04);
-  border-color: rgba(0,0,0,0.08);
-}

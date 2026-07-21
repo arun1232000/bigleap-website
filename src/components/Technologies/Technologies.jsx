@@ -1,4 +1,6 @@
 import { motion } from 'framer-motion';
+import SplitText from '../SplitText/SplitText';
+import { useParallax } from '../../hooks/useParallax';
 import './Technologies.css';
 
 const logoMap = {
@@ -103,9 +105,11 @@ function LogoRow({ items, reverse = false }) {
 }
 
 export default function Technologies() {
+  const bgParallax = useParallax(30);
+
   return (
     <section id="technologies" className="tech-section">
-      <div className="tech-section-bg" />
+      <motion.div className="tech-section-bg" ref={bgParallax.ref} style={{ y: bgParallax.y }} />
       <div className="container">
         <motion.div
           className="tech-header"
@@ -114,9 +118,9 @@ export default function Technologies() {
           viewport={{ once: true }}
         >
           <div className="section-badge">Technologies</div>
-          <h2 className="section-title">
-            We Work With the<br /><span>Best-in-Class Tools</span>
-          </h2>
+          <SplitText as="h2" className="section-title">
+            We Work With the<br /><span className="accent-italic">Best-in-Class Tools</span>
+          </SplitText>
           <p className="section-subtitle">
             Certified experts across the leading platforms your business already uses—or needs to adopt.
           </p>

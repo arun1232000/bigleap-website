@@ -9,7 +9,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 50% 60% at 20% 50%, rgba(0,200,255,0.04), transparent);
+  background: radial-gradient(ellipse 50% 60% at 20% 50%, rgba(214,255,63,0.05), transparent);
   pointer-events: none;
 }
 
@@ -30,6 +30,8 @@
 }
 
 .filter-btn {
+  position: relative;
+  overflow: hidden;
   padding: 7px 18px;
   border-radius: var(--r-pill);
   background: var(--bg-2);
@@ -48,10 +50,31 @@
 }
 
 .filter-btn.active {
-  background: var(--cyan-dim);
   border-color: var(--border-glow);
-  color: var(--cyan);
+  color: var(--cyan-dark);
 }
+
+.filter-pill-bg {
+  position: absolute;
+  inset: 0;
+  background: var(--cyan-dim);
+  z-index: 0;
+}
+
+.filter-btn-label {
+  position: relative;
+  z-index: 1;
+}
+
+.portfolio-ambient-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  pointer-events: none;
+  animation: orbFloat 15s ease-in-out infinite;
+}
+.portfolio-ambient-blob-1 { width: 400px; height: 400px; top: -120px; right: -100px; background: rgba(255,176,32,0.06); }
+.portfolio-ambient-blob-2 { width: 360px; height: 360px; bottom: -100px; left: -80px; background: rgba(214,255,63,0.06); animation-delay: 5s; }
 
 .portfolio-grid {
   display: grid;
@@ -60,9 +83,6 @@
 }
 
 .project-card {
-  background: var(--bg-2);
-  border: 1px solid var(--border);
-  border-radius: 18px;
   overflow: hidden;
   transition: border-color 0.25s, box-shadow 0.25s;
   cursor: default;
@@ -80,15 +100,15 @@
   border-bottom: 1px solid var(--border);
 }
 
-.portfolio-banner-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+.project-card-banner.arch-image {
+  border-radius: 70px 70px 0 0;
+}
+
+.project-card-banner .graphic-panel {
   transition: transform 0.5s ease;
 }
 
-.project-card:hover .portfolio-banner-img { transform: scale(1.07); }
+.project-card:hover .graphic-panel { transform: scale(1.07); }
 
 .project-banner-overlay {
   position: absolute;
@@ -191,27 +211,25 @@
   .portfolio-grid { grid-template-columns: 1fr; }
 }
 
-/* Banner image */
-.portfolio-banner-img {
+/* Animated grid behind header */
+.portfolio-section-banner-grid {
   position: absolute;
-  top: 0;
+  top: -40px;
   left: 0;
   right: 0;
-  height: 280px;
-  background: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1600&q=60') center 40%/cover no-repeat;
-  opacity: 0.07;
+  height: 320px;
+  background-image:
+    linear-gradient(rgba(214,255,63,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(214,255,63,0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity: 0.5;
   mask-image: linear-gradient(180deg, rgba(0,0,0,0.9) 0%, transparent 100%);
   -webkit-mask-image: linear-gradient(180deg, rgba(0,0,0,0.9) 0%, transparent 100%);
   pointer-events: none;
 }
 
-/* ── Portfolio card glow hover ── */
-.portfolio-card:hover {
-  box-shadow: 0 24px 64px rgba(0,0,0,0.5), 0 0 0 1px rgba(0,200,255,0.12), 0 0 40px rgba(0,200,255,0.06) !important;
-  transform: translateY(-6px) !important;
-}
 .project-tag {
-  background: rgba(0,200,255,0.08) !important;
-  border: 1px solid rgba(0,200,255,0.2) !important;
-  color: var(--cyan) !important;
+  background: var(--cyan-dim) !important;
+  border: 1px solid var(--border-glow) !important;
+  color: var(--cyan-dark) !important;
 }

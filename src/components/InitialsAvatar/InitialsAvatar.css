@@ -1,0 +1,30 @@
+.initials-avatar {
+  position: relative;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--ia-color) 32%, var(--bg-3)) 0%, var(--bg-4) 100%);
+  border: 1px solid color-mix(in srgb, var(--ia-color) 40%, transparent);
+}
+
+.initials-avatar-ring {
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 1.5px solid color-mix(in srgb, var(--ia-color) 45%, transparent);
+  animation: iaRingPulse 2.6s ease-in-out infinite;
+}
+
+@keyframes iaRingPulse {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 0.9; transform: scale(1.08); }
+}
+
+.initials-avatar-text {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--ia-color);
+  letter-spacing: 0.02em;
+}
