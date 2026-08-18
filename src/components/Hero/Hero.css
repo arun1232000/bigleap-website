@@ -55,7 +55,7 @@
   position: relative;
   z-index: 1;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1.3fr 1fr;
   gap: 60px;
   align-items: center;
   padding: 80px 0 60px;
@@ -80,11 +80,6 @@
 }
 
 .hero-eyebrow svg { color: var(--cyan); flex-shrink: 0; }
-
-@keyframes dotPulse {
-  0%, 100% { box-shadow: 0 0 6px var(--cyan); transform: scale(1); }
-  50% { box-shadow: 0 0 18px var(--cyan); transform: scale(1.2); }
-}
 
 .hero-headline {
   font-family: var(--font-display);
@@ -131,8 +126,13 @@
   font-size: 16px;
   color: var(--text-2);
   line-height: 1.75;
-  max-width: 520px;
+  max-width: 640px;
   font-family: var(--font-body);
+}
+
+.hero-sub-highlight {
+  color: var(--cyan);
+  font-weight: 700;
 }
 
 .hero-ctas { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
@@ -255,80 +255,11 @@
   justify-content: center;
 }
 
-/* Dashboard glass card */
-.hero-dash {
-  background: var(--bg-card-hi);
-  border: 1px solid var(--border-hi);
-  border-radius: var(--r-card);
-  backdrop-filter: blur(24px) saturate(140%);
-  overflow: hidden;
+.hero-right-frame {
+  position: relative;
   width: 380px;
   max-width: 100%;
-  box-shadow: var(--shadow-lg);
-}
-
-.hero-dash-header {
-  padding: 14px 20px;
-  border-bottom: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-size: 13px;
-  color: var(--text-2);
-  font-weight: 500;
-  font-family: var(--font-body);
-}
-
-.hero-dash-dots { display: flex; gap: 6px; }
-.hero-dash-dots span { width: 10px; height: 10px; border-radius: 50%; }
-.hero-dash-dots span:nth-child(1) { background: #FF5F57; }
-.hero-dash-dots span:nth-child(2) { background: #FEBC2E; }
-.hero-dash-dots span:nth-child(3) { background: #28C840; }
-
-.hero-dash-body { padding: 20px; display: flex; flex-direction: column; gap: 18px; }
-
-.hero-dash-row { display: flex; flex-direction: column; gap: 8px; }
-
-.hero-dash-labels {
-  display: flex;
-  justify-content: space-between;
-  font-size: 13px;
-  font-weight: 500;
-  font-family: var(--font-body);
-}
-
-.hero-dash-labels span:first-child { color: var(--text-2); }
-
-.hero-bar-track {
-  height: 6px;
-  background: rgba(255,255,255,0.08);
-  border-radius: 3px;
-  overflow: hidden;
-}
-
-.hero-bar-fill {
-  height: 100%;
-  border-radius: 3px;
-}
-
-.hero-dash-footer {
-  padding: 14px 20px;
-  border-top: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 13px;
-  color: var(--text-2);
-  font-family: var(--font-body);
-}
-
-.dash-dot-live {
-  width: 7px; height: 7px;
-  border-radius: 50%;
-  background: var(--cyan);
-  flex-shrink: 0;
-  box-shadow: 0 0 8px var(--cyan);
-  animation: dotPulse 2s ease-in-out infinite;
+  height: 420px;
 }
 
 /* Orbit ring — icons circling the dashboard on an elliptical path */
@@ -436,17 +367,14 @@
     text-align: center;
     gap: 48px;
   }
-  .hero-right { order: -1; }
+  .hero-right { display: none; }
   .hero-sub { margin: 0 auto; }
   .hero-ctas { justify-content: center; }
   .hero-eyebrow { justify-content: center; }
-  .hero-spin-wrap { top: -20px; right: -10px; }
 }
 
 @media (max-width: 640px) {
   .hero-headline { font-size: clamp(2.6rem, 9vw, 3.8rem); }
-  .hero-dash { width: 100%; max-width: 340px; }
-  .hero-spin-wrap { display: none; }
   .hero-stat-num { font-size: 18px; }
   .hero-stat-item { padding: 12px 14px; }
 }
@@ -455,131 +383,11 @@
 .hero-bg-image {
   position: absolute;
   inset: 0;
-  background-image:
-    radial-gradient(circle at 25% 30%, rgba(214,255,63,0.10) 0%, transparent 45%),
-    radial-gradient(circle at 75% 70%, rgba(139,124,255,0.08) 0%, transparent 50%);
-  opacity: 0.4;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.35;
   pointer-events: none;
-}
-
-/* ── Floating stat badges ── */
-.hero-float-badge {
-  position: absolute;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background: var(--bg-card-hi);
-  border: 1px solid var(--border-hi);
-  border-radius: var(--r-card);
-  padding: 11px 16px;
-  backdrop-filter: blur(20px);
-  box-shadow: var(--shadow-lg);
-  z-index: 3;
-  white-space: nowrap;
-}
-
-.hfb-clients {
-  bottom: 40px;
-  left: -30px;
-  animation: badgeFloat 6s ease-in-out infinite;
-}
-
-.hfb-uptime {
-  top: 20px;
-  left: -20px;
-  animation: badgeFloat 6s ease-in-out infinite;
-  animation-delay: 3s;
-}
-
-@keyframes badgeFloat {
-  0%, 100% { transform: translateY(0); }
-  50%       { transform: translateY(-8px); }
-}
-
-.hfb-icon {
-  width: 32px; height: 32px;
-  border-radius: var(--r-sm);
-  background: var(--cyan-dim);
-  display: flex; align-items: center; justify-content: center;
-  color: var(--cyan);
-  flex-shrink: 0;
-}
-
-.hfb-icon-green {
-  background: var(--purple-dim);
-  color: var(--purple);
-}
-
-.hfb-text { display: flex; flex-direction: column; gap: 1px; }
-
-.hfb-val {
-  font-family: var(--font-display);
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--text);
-  letter-spacing: -0.02em;
-  line-height: 1;
-}
-
-.hfb-lbl {
-  font-size: 11px;
-  color: var(--text-2);
-  font-family: var(--font-body);
-  font-weight: 500;
-}
-
-/* ── Floating animated-visual card ── */
-.hero-gif-card {
-  position: absolute;
-  bottom: -20px;
-  right: -20px;
-  width: 170px;
-  border-radius: var(--r-card);
-  overflow: hidden;
-  border: 1px solid var(--border-hi);
-  box-shadow: var(--shadow-lg);
-  animation: badgeFloat 8s ease-in-out infinite;
-  animation-delay: 1.5s;
-  z-index: 3;
-  background: var(--bg-card-hi);
-  backdrop-filter: blur(20px);
-}
-
-.hero-gif-visual {
-  width: 100%;
-  height: 100px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: radial-gradient(circle, var(--cyan-dim) 0%, transparent 75%);
-}
-
-.hero-gif-footer {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  padding: 8px 12px;
-  background: var(--bg-card);
-  border-top: 1px solid var(--border);
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--text-2);
-  font-family: var(--font-display);
-  letter-spacing: 0.03em;
-}
-
-.hero-gif-dot {
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: var(--cyan);
-  box-shadow: 0 0 8px var(--cyan);
-  animation: dotPulse 2s infinite;
-  flex-shrink: 0;
-}
-
-@media (max-width: 960px) {
-  .hero-float-badge { display: none; }
-  .hero-gif-card { display: none; }
 }
 
 /* ── Hero accent top line ── */

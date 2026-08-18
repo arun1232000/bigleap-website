@@ -12,7 +12,8 @@ const ACCESS_KEY = import.meta.env.VITE_WEB3FORMS_KEY;
 const contactInfo = [
   { icon: <Mail size={20} />, label: 'Email Us', value: 'arunabr2000@gmail.com', href: 'mailto:arunabr2000@gmail.com' },
   { icon: <Phone size={20} />, label: 'Call Us', value: '+61 2 1234 5678', href: 'tel:+61212345678' },
-  { icon: <MapPin size={20} />, label: 'Location', value: 'Sydney, Australia', href: '#' },
+  { icon: <MapPin size={20} />, label: 'India Office', value: '4th Floor, Markaz Complex, Mavoor Rd, Opposite Moffusil Bus Stand, Arayidathupalam, Kozhikode, Kerala, India, 673004', href: '#' },
+  { icon: <MapPin size={20} />, label: 'UK Office', value: '32 Halden Place, Haverhill, Suffolk, CB9 7WD, UK', href: '#' },
 ];
 
 const services = [
@@ -46,7 +47,7 @@ export default function Contact() {
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({
           access_key:  ACCESS_KEY,
-          subject:     `New BigLeap Enquiry from ${form.name}`,
+          subject:     `New Orbinexa Technologies Enquiry from ${form.name}`,
           name:        form.name,
           email:       form.email,
           company:     form.company || 'Not provided',

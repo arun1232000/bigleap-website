@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { CheckCircle2, Users2, ShieldCheck, Workflow } from 'lucide-react';
 import IsometricIcon from './IsometricIcon';
@@ -6,6 +7,8 @@ import SplitText from '../SplitText/SplitText';
 import { useMagnetic } from '../../hooks/useMagnetic';
 import { useParallax } from '../../hooks/useParallax';
 import './About.css';
+
+const MotionLink = motion.create(Link);
 
 const highlights = [
   'No long-term lock-in contracts',
@@ -31,12 +34,12 @@ export default function About() {
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
         >
-          <div className="section-badge">About BigLeap</div>
+          <div className="section-badge">About Orbinexa Technologies</div>
           <SplitText as="h2" className="section-title">
             We Make IT Simple,<br /><span className="accent-italic">Secure & Scalable</span>
           </SplitText>
           <p className="section-subtitle">
-            BigLeap is a full-service IT company helping small and mid-sized businesses run
+            Orbinexa Technologies is a full-service IT company helping small and mid-sized businesses run
             smarter. We remove the complexity of technology so your team can focus entirely
             on growing your business.
           </p>
@@ -62,10 +65,10 @@ export default function About() {
             ))}
           </div>
 
-          <motion.a href="#contact" className="btn-primary about-cta"
+          <MotionLink to="/contact" className="btn-primary about-cta"
             ref={cta.ref} style={cta.style} {...cta.handlers}>
             Let's Talk
-          </motion.a>
+          </MotionLink>
         </motion.div>
 
         <motion.div

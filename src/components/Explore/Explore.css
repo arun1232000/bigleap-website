@@ -1,0 +1,104 @@
+.explore-section {
+  padding: 100px 0;
+  position: relative;
+}
+
+.explore-header {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 64px;
+}
+
+.explore-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.explore-card {
+  position: relative;
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  height: 100%;
+  text-decoration: none;
+  transition: transform 0.12s ease, border-color 0.3s, box-shadow 0.3s !important;
+  overflow: hidden;
+}
+
+.explore-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--explore-color, var(--cyan));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.explore-card:hover {
+  border-color: var(--border-glow) !important;
+  box-shadow: var(--shadow-lg) !important;
+  transform: translateY(-3px);
+}
+.explore-card:hover::before { transform: scaleX(1); }
+
+.explore-icon-wrap {
+  width: 50px; height: 50px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--explore-color, var(--cyan));
+  transition: box-shadow 0.3s, transform 0.3s, background 0.25s, border-color 0.25s;
+}
+
+.explore-card:hover .explore-icon-wrap {
+  background: color-mix(in srgb, var(--explore-color, var(--cyan)) 14%, transparent);
+  border-color: var(--explore-color, var(--cyan));
+}
+
+.explore-title {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-1);
+}
+
+.explore-desc {
+  font-size: 0.92rem;
+  color: var(--text-3);
+  line-height: 1.55;
+  flex: 1;
+}
+
+.explore-arrow {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-3);
+  transition: background 0.25s, color 0.25s, border-color 0.25s, transform 0.25s;
+}
+
+.explore-card:hover .explore-arrow {
+  background: var(--explore-color, var(--cyan));
+  border-color: var(--explore-color, var(--cyan));
+  color: #0a0a0d;
+  transform: rotate(45deg);
+}
+
+@media (max-width: 1200px) {
+  .explore-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 640px) {
+  .explore-section { padding: 56px 0; }
+  .explore-grid { grid-template-columns: 1fr; }
+}

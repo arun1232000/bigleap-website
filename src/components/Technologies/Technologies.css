@@ -128,5 +128,6 @@
 
 @media (max-width: 640px) {
   .tech-banner { flex-direction: column; text-align: center; padding: 28px 24px; }
+  .tech-section { padding: 56px 0; }
 }
 

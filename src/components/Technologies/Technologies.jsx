@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import SplitText from '../SplitText/SplitText';
 import { useParallax } from '../../hooks/useParallax';
@@ -143,7 +144,7 @@ export default function Technologies() {
             <h3>Don't see your tool?</h3>
             <p>We work with hundreds of platforms. Chances are we've integrated it before.</p>
           </div>
-          <a href="#contact" className="btn-primary">Ask Us</a>
+          <Link to="/contact" className="btn-primary">Ask Us</Link>
         </motion.div>
       </div>
     </section>

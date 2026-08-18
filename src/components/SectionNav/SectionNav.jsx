@@ -4,11 +4,8 @@ import './SectionNav.css';
 
 const sections = [
   { id: 'hero', label: 'Home' },
-  { id: 'services', label: 'Services' },
-  { id: 'about', label: 'About' },
-  { id: 'industries', label: 'Industries' },
   { id: 'technologies', label: 'Technologies' },
-  { id: 'portfolio', label: 'Portfolio' },
+  { id: 'explore', label: 'Explore' },
   { id: 'contact', label: 'Contact' },
 ];
 

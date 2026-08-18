@@ -1,10 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight, ArrowUpRight, Sparkles, Shield, Cloud, Zap } from 'lucide-react';
-import IsometricIcon from '../About/IsometricIcon';
 import { useMagnetic } from '../../hooks/useMagnetic';
 import { useParallax } from '../../hooks/useParallax';
+import heroBanner from '../../assets/hero-banner.png';
 import './Hero.css';
+
+const MotionLink = motion.create(Link);
 
 const headlineLines = [
   { text: 'Technology', accent: false },
@@ -140,48 +143,6 @@ function TypewriterWord() {
   );
 }
 
-/* Dashboard progress card */
-function DashCard() {
-  const bars = [
-    { label: 'IT Support Tickets', pct: 94, color: '#D6FF3F' },
-    { label: 'Security Score',     pct: 98, color: '#8B7CFF' },
-    { label: 'Cloud Uptime',       pct: 100, color: '#5EEAD4' },
-    { label: 'Automation Coverage',pct: 87, color: '#FFB020' },
-  ];
-  return (
-    <motion.div className="hero-dash"
-      initial={{ opacity: 0, y: 40 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, type: 'spring' }}>
-      <div className="hero-dash-header">
-        <div className="hero-dash-dots"><span/><span/><span/></div>
-        <span>System Dashboard</span>
-      </div>
-      <div className="hero-dash-body">
-        {bars.map(({ label, pct, color }) => (
-          <div key={label} className="hero-dash-row">
-            <div className="hero-dash-labels">
-              <span>{label}</span>
-              <motion.span style={{ color }}
-                initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-                {pct}%
-              </motion.span>
-            </div>
-            <div className="hero-bar-track">
-              <motion.div className="hero-bar-fill" style={{ background: color }}
-                initial={{ width: 0 }} animate={{ width: `${pct}%` }}
-                transition={{ duration: 0.7, ease: 'easeOut' }} />
-            </div>
-          </div>
-        ))}
-      </div>
-      <div className="hero-dash-footer">
-        <span className="dash-dot-live" />All systems operational
-      </div>
-    </motion.div>
-  );
-}
-
 export default function Hero() {
   const orbsParallax = useParallax(30);
   const bgParallax = useParallax(50);
@@ -199,7 +160,7 @@ export default function Hero() {
         <div className="hero-orb hero-orb-5" />
       </motion.div>
       <div className="hero-grid-bg" />
-      <motion.div className="hero-bg-image" ref={bgParallax.ref} style={{ y: bgParallax.y }} />
+      <motion.div className="hero-bg-image" ref={bgParallax.ref} style={{ y: bgParallax.y, backgroundImage: `url(${heroBanner})` }} />
 
       <div className="container hero-layout">
         {/* LEFT: text */}
@@ -228,21 +189,21 @@ export default function Hero() {
           <motion.p className="hero-sub"
             initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
             From remote IT support to cloud workspaces, cybersecurity, and automation—
-            BigLeap keeps your technology running so you can focus on growth.
+            <span className="hero-sub-highlight"> Orbinexa Technologies</span> keeps your technology running so you can focus on growth.
           </motion.p>
 
           <motion.div className="hero-ctas"
             initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}>
-            <motion.a href="#contact" className="hero-btn-primary"
+            <MotionLink to="/contact" className="hero-btn-primary"
               ref={primaryCta.ref} style={primaryCta.style} {...primaryCta.handlers}
               whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
-              Get Free Consultation <ArrowRight size={16} />
-            </motion.a>
-            <motion.a href="#portfolio" className="hero-btn-ghost"
+              Contact Us <ArrowRight size={16} />
+            </MotionLink>
+            <MotionLink to="/portfolio" className="hero-btn-ghost"
               ref={ghostCta.ref} style={ghostCta.style} {...ghostCta.handlers}
               whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
               See Our Work
-            </motion.a>
+            </MotionLink>
           </motion.div>
 
           <motion.div className="hero-stats-row"
@@ -256,61 +217,17 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* RIGHT: dash + spinning badge + floating badges + GIF */}
+        {/* RIGHT: spinning badge + floating badges + GIF */}
         <div className="hero-right">
-          <OrbitRing />
-          <DashCard />
-          <motion.div className="hero-spin-wrap"
-            initial={{ opacity: 0, scale: 0.6, rotate: -30 }}
-            animate={{ opacity: 1, scale: 1, rotate: 0 }}
-            transition={{ type: 'spring', stiffness: 80 }}>
-            <MetricOrb />
-          </motion.div>
-
-          {/* Floating stat badge 1 */}
-          <motion.div
-            className="hero-float-badge hfb-clients"
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.4 }}>
-            <div className="hfb-icon">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            </div>
-            <div className="hfb-text">
-              <span className="hfb-val">200+</span>
-              <span className="hfb-lbl">Happy Clients</span>
-            </div>
-          </motion.div>
-
-          {/* Floating stat badge 2 */}
-          <motion.div
-            className="hero-float-badge hfb-uptime"
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.4 }}>
-            <div className="hfb-icon hfb-icon-green">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-            </div>
-            <div className="hfb-text">
-              <span className="hfb-val">99.9%</span>
-              <span className="hfb-lbl">Uptime SLA</span>
-            </div>
-          </motion.div>
-
-          {/* Floating animated visual panel */}
-          <motion.div
-            className="hero-gif-card"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}>
-            <div className="hero-gif-visual">
-              <IsometricIcon size={68} variant="cube" icon={Sparkles} color="#D6FF3F" />
-            </div>
-            <div className="hero-gif-footer">
-              <span className="hero-gif-dot" />
-              <span>Real-time monitoring</span>
-            </div>
-          </motion.div>
+          <div className="hero-right-frame">
+            <OrbitRing />
+            <motion.div className="hero-spin-wrap"
+              initial={{ opacity: 0, scale: 0.6, rotate: -30 }}
+              animate={{ opacity: 1, scale: 1, rotate: 0 }}
+              transition={{ type: 'spring', stiffness: 80 }}>
+              <MetricOrb />
+            </motion.div>
+          </div>
         </div>
       </div>
 

@@ -1,20 +1,20 @@
 import { useState, useEffect, useRef } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
 import { Menu, X, Zap, Sun, Moon } from 'lucide-react';
 import { useMagnetic } from '../../hooks/useMagnetic';
-import { useActiveSection } from '../../hooks/useActiveSection';
 import './Navbar.css';
 
 const navLinks = [
-  { label: 'About', href: '#about' },
-  { label: 'Services', href: '#services' },
-  { label: 'Industries', href: '#industries' },
-  { label: 'Technologies', href: '#technologies' },
-  { label: 'Portfolio', href: '#portfolio' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Home', to: '/' },
+  { label: 'About', to: '/about' },
+  { label: 'Services', to: '/services' },
+  { label: 'Industries', to: '/industries' },
+  { label: 'Portfolio', to: '/portfolio' },
+  { label: 'Contact', to: '/contact' },
 ];
 
-const sectionIds = navLinks.map(l => l.href.slice(1));
+const MotionLink = motion.create(Link);
 
 export default function Navbar({ theme, toggleTheme }) {
   const [scrolled, setScrolled] = useState(false);
@@ -23,7 +23,7 @@ export default function Navbar({ theme, toggleTheme }) {
   const lastY = useRef(0);
   const { scrollY } = useScroll();
   const cta = useMagnetic(0.3, 10);
-  const active = useActiveSection(sectionIds);
+  const { pathname } = useLocation();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -46,17 +46,17 @@ export default function Navbar({ theme, toggleTheme }) {
       transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
     >
       <div className="navbar-inner container">
-        <a href="#hero" className="logo">
+        <Link to="/" className="logo">
           <div className="logo-icon"><Zap size={18} /></div>
-          <span>Big<span className="logo-accent">Leap</span></span>
-        </a>
+          <span>Orbinexa <span className="logo-accent">Technologies</span></span>
+        </Link>
 
         <ul className="nav-links">
           {navLinks.map(link => {
-            const isActive = active === link.href.slice(1);
+            const isActive = pathname === link.to;
             return (
               <li key={link.label}>
-                <a href={link.href} className={`nav-link ${isActive ? 'nav-link--active' : ''}`}>
+                <Link to={link.to} className={`nav-link ${isActive ? 'nav-link--active' : ''}`}>
                   {link.label}
                   {isActive && (
                     <motion.span
@@ -65,21 +65,21 @@ export default function Navbar({ theme, toggleTheme }) {
                       transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                     />
                   )}
-                </a>
+                </Link>
               </li>
             );
           })}
         </ul>
 
-        <motion.a
-          href="#contact"
+        <MotionLink
+          to="/contact"
           className="btn-primary nav-cta"
           ref={cta.ref}
           style={cta.style}
           {...cta.handlers}
         >
           Get Started
-        </motion.a>
+        </MotionLink>
 
         <motion.button
           className="theme-toggle"
@@ -116,18 +116,18 @@ export default function Navbar({ theme, toggleTheme }) {
             transition={{ duration: 0.3 }}
           >
             {navLinks.map(link => (
-              <a
+              <Link
                 key={link.label}
-                href={link.href}
-                className={`mobile-link ${active === link.href.slice(1) ? 'mobile-link--active' : ''}`}
+                to={link.to}
+                className={`mobile-link ${pathname === link.to ? 'mobile-link--active' : ''}`}
                 onClick={() => setOpen(false)}
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
-            <a href="#contact" className="btn-primary mobile-cta" onClick={() => setOpen(false)}>
+            <Link to="/contact" className="btn-primary mobile-cta" onClick={() => setOpen(false)}>
               Get Started
-            </a>
+            </Link>
           </motion.div>
         )}
       </AnimatePresence>

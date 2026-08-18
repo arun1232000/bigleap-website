@@ -13,7 +13,7 @@
 
 .footer-big-text {
   font-family: var(--font-display);
-  font-size: clamp(5rem, 14vw, 13rem);
+  font-size: clamp(2.6rem, 7vw, 6.4rem);
   font-weight: 700;
   letter-spacing: -0.05em;
   line-height: 0.9;
@@ -92,11 +92,17 @@
 
 .footer-contact-item {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 9px;
   font-size: 14px;
   color: var(--text-2);
   font-family: var(--font-body);
+  line-height: 1.5;
+}
+
+.footer-contact-item svg {
+  flex-shrink: 0;
+  margin-top: 2px;
   text-decoration: none;
   transition: color 0.2s;
 }
@@ -173,7 +179,7 @@
 
 @media (max-width: 640px) {
   .footer-grid { grid-template-columns: 1fr; gap: 32px; }
-  .footer-big-text { font-size: clamp(3.5rem, 18vw, 5rem); }
+  .footer-big-text { font-size: clamp(1.7rem, 9vw, 2.6rem); }
   .footer-bottom-inner { flex-direction: column; text-align: center; }
 }
 
