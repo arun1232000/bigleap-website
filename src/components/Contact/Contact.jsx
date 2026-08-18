@@ -10,7 +10,7 @@ import './Contact.css';
 const ACCESS_KEY = import.meta.env.VITE_WEB3FORMS_KEY;
 
 const contactInfo = [
-  { icon: <Mail size={20} />, label: 'Email Us', value: 'arunabr2000@gmail.com', href: 'mailto:arunabr2000@gmail.com' },
+  { icon: <Mail size={20} />, label: 'Email Us', value: 'info@orbinexa.io', href: 'mailto:info@orbinexa.io' },
   { icon: <Phone size={20} />, label: 'Call Us', value: '+61 2 1234 5678', href: 'tel:+61212345678' },
   { icon: <MapPin size={20} />, label: 'India Office', value: '4th Floor, Markaz Complex, Mavoor Rd, Opposite Moffusil Bus Stand, Arayidathupalam, Kozhikode, Kerala, India, 673004', href: '#' },
   { icon: <MapPin size={20} />, label: 'UK Office', value: '32 Halden Place, Haverhill, Suffolk, CB9 7WD, UK', href: '#' },
@@ -63,7 +63,7 @@ export default function Contact() {
         throw new Error(data.message);
       }
     } catch {
-      setError('Could not send your message. Please email us directly at arunabr2000@gmail.com');
+      setError('Could not send your message. Please email us directly at info@orbinexa.io');
     } finally {
       setSending(false);
     }
