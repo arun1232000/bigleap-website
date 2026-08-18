@@ -2,7 +2,22 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script type="text/javascript">
+      // GitHub Pages SPA routing: restore the real path after 404.html redirects here.
+      (function (l) {
+        if (l.search[1] === '/') {
+          var decoded = l.search
+            .slice(1)
+            .split('&')
+            .map(function (s) {
+              return s.replace(/~and~/g, '&');
+            })
+            .join('?');
+          window.history.replaceState(null, null, l.pathname.slice(0, -1) + decoded + l.hash);
+        }
+      })(window.location);
+    </script>
+    <link rel="icon" type="image/svg+xml" href="%BASE_URL%favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Orbinexa Technologies IT Solutions | Smart IT Services for Growing Businesses</title>
     <meta name="description" content="Orbinexa Technologies provides end-to-end IT services including remote IT support, web development, Google Workspace, Microsoft 365, cybersecurity, VoIP, automation, and CRM deployment." />
